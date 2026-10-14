@@ -11,7 +11,7 @@ import uuid
 
 repo = Path(__file__).resolve().parents[2]
 sources = Path(__file__).resolve().parent
-output = Path(tempfile.mkdtemp(prefix="gancho-shortcut-menu.")).resolve()
+output = Path(tempfile.mkdtemp(prefix="gancho-shortcut-menu.", dir=os.environ.get("RUNNER_TEMP"))).resolve()
 print(f"Native menu evidence: {output}", flush=True)
 revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
 version = subprocess.check_output(["git", "describe", "--tags", "--abbrev=0"], cwd=repo, text=True).strip().removeprefix("v")
